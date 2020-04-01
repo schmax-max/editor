@@ -1,0 +1,58 @@
+cron:
+  - description: "snapshot publishers"
+    url: /informant-snapshot/publishers
+    target: informant-snapshot
+    schedule: every 3 hours from 0:00 to 23:59
+  - description: "snapshot curators"
+    url: /informant-snapshot/curators
+    target: informant-snapshot
+    schedule: every 3 hours from 0:15 to 23:59
+  - description: "snapshot slugs"
+    url: /informant-snapshot/slugs
+    target: informant-snapshot
+    schedule: every 3 hours from 0:30 to 23:59
+  - description: "snapshot photos"
+    url: /informant-snapshot/photos
+    target: informant-snapshot
+    schedule: every 3 hours from 0:45 to 23:59
+  - description: "newsletter podcasts"
+    url: /informant-newsletter/podcasts
+    target: informant-newsletter
+    schedule: every 3 hours from 1:00 to 23:59
+  - description: "newsletter others"
+    url: /informant-newsletter/others
+    target: informant-newsletter
+    schedule: every 3 hours from 1:15 to 23:59
+  - description: "twitter sports"
+    url: /informant-twitter/sports
+    target: informant-twitter
+    schedule: every 3 hours from 1:30 to 23:59
+  - description: "twitter others"
+    url: /informant-twitter/others
+    target: informant-twitter
+    schedule: every 3 hours from 1:45 to 23:59
+  - description: "youtube sports"
+    url: /informant-youtube/sports
+    target: informant-youtube
+    schedule: every 3 hours from 2:00 to 23:59
+  - description: "podcast sports"
+    url: /informant-podcast/sports
+    target: informant-podcast
+    schedule: every 3 hours from 2:15 to 23:59
+#  - description: 'bubble center'
+#    url: /informant-bubble/center
+#    target: informant-bubble
+#    schedule: every 6 hours from 2:00 to 23:59
+#  - description: 'bubble left_center'
+#    url: /informant-bubble/left_center
+#    target: informant-bubble
+#    schedule: every 6 hours from 2:15 to 23:59
+#  - description: 'bubble right_center'
+#    url: /informant-bubble/right_center
+#    target: informant-bubble
+#    schedule: every 6 hours from 2:30 to 23:59
+#  - description: 'bubble pro_science'
+#    url: /informant-bubble/pro_science
+#    target: informant-bubble
+#    schedule: every 6 hours from 2:45 to 23:59
+
