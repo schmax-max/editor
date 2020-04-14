@@ -4,26 +4,26 @@ const getDateObject = require("./getDateObject");
 
 const schema = new mongoose.Schema({
   _type: {
-    type: "string"
+    type: "string",
   },
   _id: {
-    type: "ObjectId"
+    type: "ObjectId",
   },
   content_url: {
-    type: "string"
+    type: "string",
   },
   updated_at: {
     type: "date",
-    format: "date-time"
+    format: "date-time",
   },
   body: {
-    type: "object"
-  }
+    type: "object",
+  },
 });
 
 schema.set("toJSON", { virtuals: true });
 
-schema.statics.queryCategory = async function(allocations, limit) {
+schema.statics.queryCategory = async function (allocations, limit) {
   const categoryRes = {};
   for (let i = 0; i < allocations.length; i++) {
     const allocation = allocations[i];
@@ -33,7 +33,7 @@ schema.statics.queryCategory = async function(allocations, limit) {
   return categoryRes;
 };
 
-schema.statics.queryAllocation = async function(allocation, limit) {
+schema.statics.queryAllocation = async function (allocation, limit) {
   const queryAllocation = { "body.locations.allocation": allocation };
   const findAllocation = Object.assign(queryAllocation, getDateObject(3));
   // console.log({ findAllocation });
@@ -44,7 +44,7 @@ schema.statics.queryAllocation = async function(allocation, limit) {
   return allocationRes;
 };
 
-schema.statics.querySelection = async function(categories, limit) {
+schema.statics.querySelection = async function (categories, limit) {
   let iterations = categories.length;
 
   const selectionRes = {};
@@ -56,7 +56,7 @@ schema.statics.querySelection = async function(categories, limit) {
   return selectionRes;
 };
 
-schema.statics.queryEntireCategory = async function(limit, category) {
+schema.statics.queryEntireCategory = async function (limit, category) {
   const queryCategory = { "body.locations.category": category };
   const findCategory = Object.assign(queryCategory, getDateObject(3));
   // console.log({ findCategory });
@@ -67,8 +67,8 @@ schema.statics.queryEntireCategory = async function(limit, category) {
   return categoryRes;
 };
 
-schema.statics.queryNoisefree = async function() {
-  const queryLength = { "body.core.content_minutes": { $gt: 2, $lt: 20 } };
+schema.statics.queryNoisefree = async function () {
+  const queryLength = { "body.core.content_minutes": { $gt: 6, $lt: 20 } };
   const queryType = { "body.core.content_type": { $in: ["article", "video"] } };
   // const queryCategory = { "body.locations.area": "noisefree" };
   const find = Object.assign(
@@ -84,8 +84,8 @@ schema.statics.queryNoisefree = async function() {
   return bbhRes;
 };
 
-schema.statics.querySports = async function(category) {
-  const queryLength = { "body.core.content_minutes": { $gt: 2, $lt: 20 } };
+schema.statics.querySports = async function (category) {
+  const queryLength = { "body.core.content_minutes": { $gt: 6, $lt: 20 } };
   const queryType = { "body.core.content_type": { $in: ["article", "video"] } };
   const queryCategory = { "body.locations.category": category };
   const find = Object.assign(
@@ -104,7 +104,7 @@ schema.statics.querySports = async function(category) {
   return bbhRes;
 };
 
-schema.statics.search = async function(term, limit) {
+schema.statics.search = async function (term, limit) {
   if (term) term = term.toLowerCase();
   const queryLength = { "body.core.content_minutes": { $gt: 2, $lt: 60 } };
   const queryType = { "body.core.content_type": { $in: ["article", "video"] } };
@@ -146,10 +146,10 @@ function createModels() {
     "health",
     "voodoo",
     "sports",
-    "bbh"
+    "bbh",
   ];
   const models = {};
-  collections.forEach(collection => {
+  collections.forEach((collection) => {
     models[collection] = mongoose.model(
       `piles_${collection}`,
       schema,
