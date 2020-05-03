@@ -1,4 +1,12 @@
 cron:
+  - description: "calculator"
+    url: /calculator/trigger
+    target: calculator
+    schedule: every 30 minutes from 0:07 to 23:59
+  - description: "snapshot publishers"
+    url: /informant-snapshot/publishers
+    target: informant-snapshot
+    schedule: every 3 hours from 0:00 to 23:59
   - description: "snapshot publishers"
     url: /informant-snapshot/publishers
     target: informant-snapshot

@@ -2,6 +2,8 @@
 const createModels = require("./createModels");
 const getDateObject = require("./getDateObject");
 
+console.log("in file");
+
 async function queryUpdates() {
   try {
     console.log("in queryUpdates");
@@ -13,11 +15,7 @@ async function queryUpdates() {
     for (const name in models) {
       const model = models[name];
       console.log(`running query for ${name}`);
-      const find = getDateObject("updated_at", 1, "$gt");
-      console.log({ p: find["$and"][1] });
-      response[name] = await model.countDocuments(find);
-      // await model.deleteMany(identifyOld());
-      // console.log({ response });
+      await model.deleteMany(getDateObject("updated_at", 5, "$lt"));
     }
     console.log({ response });
     return response;

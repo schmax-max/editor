@@ -71,17 +71,22 @@ schema.statics.queryNoisefree = async function () {
   const queryLength = { "body.core.content_minutes": { $gt: 6, $lt: 20 } };
   const queryType = { "body.core.content_type": { $in: ["article", "video"] } };
   // const queryCategory = { "body.locations.area": "noisefree" };
+
   const find = Object.assign(
     {},
     queryLength,
     queryType,
     // queryCategory,
     getDateObject(3)
+    //
   );
-  const bbhRes = await this.find(find)
+  console.log({ find });
+  const res = await this.find(find)
     .sort({ "body.scores.combined": -1 })
     .limit(24);
-  return bbhRes;
+
+  console.log({ res });
+  return res;
 };
 
 schema.statics.querySports = async function (category) {
@@ -96,12 +101,12 @@ schema.statics.querySports = async function (category) {
     getDateObject(3)
   );
   // console.log({ find });
-  const bbhRes = await this.find(find)
+  const res = await this.find(find)
     .sort({ "body.scores.combined": -1 })
     // .skip(skip)
     .limit(24);
-  // console.log({ bbhRes });
-  return bbhRes;
+  // console.log({ res });
+  return res;
 };
 
 schema.statics.search = async function (term, limit) {
@@ -116,6 +121,7 @@ schema.statics.search = async function (term, limit) {
     queryType,
     getDateObject(20)
   );
+  console.log({ find });
   const res = await this.find(find)
     .sort({ "body.scores.combined": -1 })
     .limit(limit);
@@ -128,12 +134,12 @@ schema.statics.search = async function (term, limit) {
 //   const queryTerm = { "body.word_arrays.category": "basketball" };
 //   const find = Object.assign({}, queryCategory, getDateObject(20));
 //   console.log({ find });
-//   const bbhRes = await this.find(find)
+//   const res = await this.find(find)
 //     .sort({ "body.scores.combined": -1 })
 //     // .skip(skip)
 //     .limit(limit);
-//   // console.log({ bbhRes });
-//   return bbhRes;
+//   // console.log({ res });
+//   return res;
 // };
 
 function createModels() {

@@ -6,10 +6,11 @@ module.exports = function getDateObject(days) {
     .tz("America/Chicago")
     .subtract(days, "days")
     .toISOString();
+  console.log({ date });
   return {
     $and: [
       { "body.core.publication_date": { $gt: date } },
-      { "body.core.publication_date": { $exists: true } }
-    ]
+      { "body.core.publication_date": { $exists: true } },
+    ],
   };
 };
