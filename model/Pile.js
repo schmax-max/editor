@@ -75,17 +75,16 @@ schema.statics.queryNoisefree = async function () {
   const find = Object.assign(
     {},
     queryLength,
-    queryType,
-    // queryCategory,
-    getDateObject(3)
+    queryType
+    // getDateObject(3)
     //
   );
-  console.log({ find });
+  // console.log({ find });
   const res = await this.find(find)
     .sort({ "body.scores.combined": -1 })
     .limit(24);
 
-  console.log({ res });
+  // console.log({ res });
   return res;
 };
 
